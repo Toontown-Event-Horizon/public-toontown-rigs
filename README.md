@@ -21,10 +21,14 @@ Want to modify the rig:
 Just want to add new animations:
 - Only download the **baked** and **gameready** files.
 3. Open one of the projects. Make sure _YABEE_, _Game Rig Tools_, and Blender's preinstalled *Rigify* is installed/enabled. If you are unsure how, follow this [guide](https://github.com/Pullusb/How_to_install_Blender_addons).
-4. Attach textures to the Cog from your Toontown repo's resources.
+4. Attach textures to the Cog from your Toontown repo's resources, located within the **maps** folder within **phase_3.5**.
 5. When the project opens: Press **A** to select everything in the scene. Go to the **File** tab, and if you installed YABEE correctly select the **Panda3d (.egg)** option.
+
+![image](https://github.com/user-attachments/assets/f63073bb-dafe-4353-aa6e-ad8bfa029761)
+
 6. A window should pop up, make sure your settings look like this:
-[image here bro]
+
+![image](https://github.com/user-attachments/assets/e324f7a4-3f77-4acb-af7d-822ea38206a1)
 
 7. Export the rig. Then rinse and repeat with the other rigs (Make sure if you are modifying the Cogs or Toons you do _all of the variants_ since you will need to change code later.)
 8. You will need to run Panda3D's **egg-optchar** to expose parts of the rig needed for it to work correctly in game. Open up powershell (on Windows) or shell (on Linux/MacOS) in the directory, and run the following command so that the rig has all the meshes and joints exposed for them to work properly:
@@ -34,6 +38,10 @@ Cogs:
 ```
 egg-optchar FileName.egg -keepall -inplace -flag arms -flag hands -flag legs -flag torso -expose ATTACH-meter -expose ATTACH-head -expose ATTACH-hold.L -expose ATTACH-hold.R -expose ATTACH-shadow
 ```
+To make sure it ran correctly, double clicking on .bam files should open them to a view of the model. Pressing **shift-L** will display the model's contents in the console, and should look like this:
+
+![image](https://github.com/user-attachments/assets/c7fead19-ff4e-454f-a701-9f2fd2b095a4)
+
 10. Then, run **egg2bam** on all of the files. If you have Windows you can use the provided **bulkegg2bam** powershell script in the repo to convert any .eggs placed in its folder to .bams when running.
 11. Replace the old animation files in resources with the new ones. You will need to do some navigating to find where they are all located, look in **Suit.py/Toon.py** for references. Usually, most Toon animations are under phase_3/models/char and the same paths under phase_3.5 and phase_4, but not all of them. Most Suit animations are in phase_3.5 and phase_5.
 12. Last step, I swear. You need to replace all references to exposed joints for suits in the codebase with the new names. If you are using Pycharm you can `ctrl+shift+r` to do Find and Replace in every file. The conversions are:
