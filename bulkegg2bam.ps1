@@ -9,5 +9,5 @@ for ($i = 0 ; $i -le $eggfiles.Length ; $i++){
     Write-Host 'Should come out to '$eggfiles[$i]
     Write-Host '
     '
-    .\egg2bam.exe $eggfiles[$j].toString() $bamname.ToString()
+    .\egg2bam.exe $eggfiles[$i].toString() $bamname.ToString()
 }
